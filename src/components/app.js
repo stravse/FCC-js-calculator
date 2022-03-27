@@ -1,4 +1,6 @@
 import React from "react";
+import Display from "./display";
+import ButtonContainer from "./buttons";
 import "../scss/index.scss";
 
 class App extends React.Component{
@@ -9,6 +11,8 @@ class App extends React.Component{
         return(
             <div className="wrapper">
                 <h1> This is a test</h1>
+                <Display />
+                <ButtonContainer />
             </div>
         )
     }
