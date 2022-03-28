@@ -8,24 +8,24 @@ class Mainpad extends React.Component{
     render(){
         return (
             <div className="main-number-container">
-                <button>AC</button>
-                <button>DEL</button>
-                <button>/</button>
-                <button>*</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>-</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>+</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button className="span-two-row">=</button>
-                <button className="span-two-column">0</button>
-                <button>.</button>
+                <button onClick={this.props.clearDisplay} >AC</button>
+                <button onClick={this.props.updatePrev}>DEL</button>
+                <button onClick={() => this.props.onClick("/")}>/</button>
+                <button onClick={() => this.props.onClick("*")}>*</button>
+                <button onClick={() => this.props.onClick("7")}>7</button>
+                <button onClick={() => this.props.onClick("8")}>8</button>
+                <button onClick={() => this.props.onClick("9")}>9</button>
+                <button onClick={() => this.props.onClick("-")}>-</button>
+                <button onClick={() => this.props.onClick("4")}>4</button>
+                <button onClick={() => this.props.onClick("5")}>5</button>
+                <button onClick={() => this.props.onClick("6")}>6</button>
+                <button onClick={() => this.props.onClick("+")}>+</button>
+                <button onClick={() => this.props.onClick("1")}>1</button>
+                <button onClick={() => this.props.onClick("2")}>2</button>
+                <button onClick={() => this.props.onClick("3")}>3</button>
+                <button onClick={this.props.updatePrev} className="span-two-row">=</button>
+                <button onClick={() => this.props.onClick("0")} className="span-two-column">0</button>
+                <button onClick={() => this.props.onClick(".")}>.</button>
                 
             </div>
         );

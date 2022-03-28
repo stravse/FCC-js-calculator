@@ -2,32 +2,25 @@ import React from "react";
 import "../scss/index.scss";
 
 // This file contains all Display components
-
-class DisplayPrevious extends React.Component{
-    render(){
-        return (
-            <div className="display-previous">{this.props.display}</div>
-        )
-    }
+function DisplayPrevious(props){
+    return(
+        <div className="display-previous">{props.previous}</div>
+    )
 }
 
-class DisplayCurrent extends React.Component {
-    render(){
-        return(
-            <div className="display-current">{this.props.display}</div>
-        )
-    }
+function DisplayCurrent(props){
+    return(
+        <div className="display-current">{props.display}</div>
+    )
 }
 
-class Display extends React.Component{
-    render(){
-        return(
-            <div className="display-container">
-                <DisplayPrevious display={this.props.display} />
-                <DisplayCurrent display={this.props.display} />
-            </div>
-        )
-    }
+function Display(props){
+    return(
+        <div className="display-container">
+            <DisplayPrevious previous={props.previous} />
+            <DisplayCurrent display={props.display} />
+        </div>
+    )
 }
 
 export default Display;

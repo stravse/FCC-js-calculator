@@ -4,14 +4,23 @@
     background-color: burlywood;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+
 }
 
 .display-previous{
-    font-size: 0.8em;
-    text-align: end;
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 1.5em;
+    height: 35%;
 
 }
 .display-current{
-    font-size: 1em;
-    text-align: end;
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 3em;
+    background-color: beige;
+    height: 65%;
 }
