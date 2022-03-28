@@ -1,6 +1,8 @@
 @import "./buttons.scss";
 @import "./display.scss";
-
+*,*::before, *::after{
+    box-sizing: border-box;
+}
 body{
     margin: 0;
     padding: 0;
@@ -8,12 +10,14 @@ body{
 #root{
     width: 100%;
     height: 100vh;
-}
-.wrapper{
-    width: 100%;
-    height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.calculator-grid{
+    width: 320px;
+    height: 400px;
+    display: grid;
+    background-color: aquamarine;
+    grid-template-rows: repeat(2, 6rem);
 }

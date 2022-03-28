@@ -3,10 +3,10 @@ import "../scss/index.scss";
 
 // This file contains all Display components
 
-class DisplayAnswer extends React.Component{
+class DisplayPrevious extends React.Component{
     render(){
         return (
-            <div className="display-answer"></div>
+            <div className="display-previous">{this.props.display}</div>
         )
     }
 }
@@ -14,7 +14,7 @@ class DisplayAnswer extends React.Component{
 class DisplayCurrent extends React.Component {
     render(){
         return(
-            <div className="current-display">{this.props.display}</div>
+            <div className="display-current">{this.props.display}</div>
         )
     }
 }
@@ -23,8 +23,8 @@ class Display extends React.Component{
     render(){
         return(
             <div className="display-container">
+                <DisplayPrevious display={this.props.display} />
                 <DisplayCurrent display={this.props.display} />
-                <DisplayAnswer />
             </div>
         )
     }

@@ -1,0 +1,17 @@
+
+.display-container{
+    width: 100%;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+}
+
+.display-previous{
+    font-size: 0.8em;
+    text-align: end;
+
+}
+.display-current{
+    font-size: 1em;
+    text-align: end;
+}

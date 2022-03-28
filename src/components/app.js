@@ -1,6 +1,6 @@
 import React from "react";
 import Display from "./display";
-import ButtonContainer from "./buttons";
+import Mainpad from "./buttons";
 import "../scss/index.scss";
 
 class App extends React.Component{
@@ -12,10 +12,9 @@ class App extends React.Component{
     }
     render(){
         return(
-            <div className="wrapper">
-                <h1> This is a test</h1>
+            <div className="calculator-grid">
                 <Display display={this.state.current} />
-                <ButtonContainer />
+                <Mainpad />
             </div>
         )
     }
