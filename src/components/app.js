@@ -1,47 +1,73 @@
-import React from "react";
+import React, {useState, useReducer} from "react";
 import Display from "./display";
 import Mainpad from "./buttons";
 import "../scss/index.scss";
 
-class App extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            current: "0",
-            previous: "",
-            operator: "",
-            history: "",
+const PLUS = "plus";
+const MINUS = "minus";
+const MULTIPLY = "multiply";
+const DIVIDE = "divide";
+const initOperator = {ops: "", after: "0"}
+
+function operationReducer(state, action){
+    // does the operatoins
+    switch(action.type){
+        case PLUS: 
+            return {...state, after: action.previous + action.current };
+        case MINUS:
+            return {...state, after: action.previous - action.current};
+        case MULTIPLY:
+            return {...state, after: action.previous * action.current};
+        case DIVIDE:
+            return {...state, after: action.previous / action.current};
+        default:
+            return state;
+    }
+}
+
+function App(){
+    const [current, setCurrent] = useState("");
+    const [previous, setPrevious] = useState(null);
+    const [state, dispatch] = useReducer(operationReducer, initOperator);
+    const [history, setHistory] = useState("");
+
+    function updateDisplay(item){
+        setCurrent(prevCurrent => prevCurrent + item);
+    }
+
+    function updatePrevious(){
+        setPrevious(previous + current);
+    }
+
+    function handleOperation(operator, current, previous){
+        // does the operation through the operatoinReducer
+        if (!state.ops || previous === null){
+            dispatch({type: operator, current: current, previous: previous})
+            setCurrent(state.after);
         }
-        this.updateDisplay = this.updateDisplay.bind(this);
-        this.updatePrevious = this.updatePrevious.bind(this);
-        this.clearDisplay = this.clearDisplay.bind(this);
+
     }
-    updateDisplay(item){
-        this.setState(state=> {return{
-            current: state.current + item,
-        }})
+
+    function clearDisplay(){
+        setCurrent("");
+        setPrevious("");
     }
-    updatePrevious(){
-        this.setState(state=>{return{
-            current: "",
-            previous:  state.previous + state.current,
-        }})
-    }
-    clearDisplay(){
-        this.setState({
-            current: "",
-            previous: "",
-        })
-    }
-    render(){
-        console.log(this.state);
-        return(
-            <div className="calculator-grid">
-                <Display display={this.state.current} previous={this.state.previous} />
-                <Mainpad onClick={this.updateDisplay} updatePrev={this.updatePrevious} clearDisplay={this.clearDisplay} />
-            </div>
-        )
-    }
+    return(
+        <div className="calculator-grid">
+            <Display 
+            display={current} 
+            previous={previous} 
+
+            />
+
+            <Mainpad 
+            onClick={updateDisplay} 
+            updatePrev={updatePrevious} 
+            clearDisplay={clearDisplay} 
+
+            />
+        </div>
+    )
 }
 
 export default App;
