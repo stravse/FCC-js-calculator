@@ -23,28 +23,27 @@ function App(){
     }
     function addNumber(btn) {
         const value = btn.target.value;
-        if (current === "0" || isOperator.test(current)){
-            setCurrent(value);
-        } else {
-            setCurrent(prevCurrent => prevCurrent + value);
-        }
+        setCurrent(prevCurrent => 
+            current === "0" || isOperator.test(current)
+            ? value
+            : prevCurrent + value
+        );
+        
     }
-
     function addOperator(btn) {
         const value = btn.target.value;
     }
+
     function addDecimal(btn) {
         const value = btn.target.value;
         if (!current.includes(value)){
-            // do if current doesn't have a decimal
-            if (endsWithOperator.test(history) || (current === 0 && history=== "")){
-                // if last item was an operator or current is zero and history is blank
+            if (endsWithOperator.test(history) || (current === "0" && history === "")){
                 setCurrent("0.");
+                setHistory("0.");
             } else{
-                // if last was a number then just add the decimal
                 setCurrent(prevCurrent => prevCurrent + value);
+                setHistory(prevHistory => prevHistory + value);
             }
-            
         }
     }
     return(
