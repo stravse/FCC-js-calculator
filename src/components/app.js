@@ -1,122 +1,64 @@
-import React, {useState, useReducer, useEffect} from "react";
+import React, {useState} from "react";
 import Display from "./display";
 import Mainpad from "./buttons";
 import "../scss/index.scss";
 
-const PLUS = "plus";
-const MINUS = "minus";
-const MULTIPLY = "multiply";
-const DIVIDE = "divide";
-const CLEAR = "clear";
-const DELETE = "delete";
-const initOperator = {after: "0"};
+const isOperator = /[+\-*/]/; // check if it is an operator
+const endsWithOperator = /[+\-*/]$/; // check if history has an operator
+const endsWithNegative = /[+\-*/]{1}-$/; // handles in checking if there is a negative
 
-
-
-function operationReducer(state, action){
-    // does the operatoins
-    switch(action.type){
-        case PLUS: 
-            return {after:  action.previous + action.current};
-        case MINUS:
-            return {after: action.previous - action.current};
-        case MULTIPLY:
-            return {after: action.previous * action.current};
-        case DIVIDE:
-            return {after: action.previous / action.current};
-        case CLEAR:
-            return {...initOperator};
-        default:
-            return state;
-    }
-}
 
 function App(){
-    const [current, setCurrent] = useState("0");
-    const [previous, setPrevious] = useState("0");
-    const [state, dispatch] = useReducer(operationReducer, initOperator);
-    useEffect(()=>{
-        setPrevious(state.after);
-        setCurrent("0");
-    },[state.after]);
-    const [history, setHistory] = useState("");
-    const [operator, setOperator] = useState("");
-
-    function updateDisplay(item){
-        if(current === "0"){
-            if (current === item){
-                return "no multiple Zero";
-            }
-            setCurrent("");
-        }
-        else if(item === "."){
-            //this check if current already has a decimal point then dont add another one
-            if(current.includes(item)){
-                return "no multiple decimal"
-            }
-        } else if (current === "" && operator === ""){
-            setPrevious("0");
-        }
-        setCurrent(prevCurrent => prevCurrent + item);
-        setHistory(history + current);
-    }
-    function updatePrevious(){
-        if (previous === null){
-            setPrevious(current);
-            setCurrent("");
-        } else{
-            setPrevious(previous + current);
-            setCurrent("");
-        }
-        
-    }
-
-    function handleOperation(operation){
-        // does the operation through the operationReducer.
-        //so if prev = 0
-        //and current has value
-        if(current === "0" && previous === "0"){
-            console.log("but why?")
-            return "cant do nothing";
-        }
-        else if (previous === "0" && operator === ""){
-            console.log('first time');
-            setPrevious(current);
-            setCurrent("0");
-            setOperator(operation);
-        }
-        else if (operation){
-            console.log('you did operation');
-            let parsedCurr = parseFloat(current);
-            let parsedPrev = parseFloat(previous);
-            dispatch({type: operator, current: parsedCurr, previous: parsedPrev});
-            setOperator(operation);
-        } else{
-            console.log('You did equal');
-            let parsedCurr = parseFloat(current);
-            let parsedPrev = parseFloat(previous);
-            dispatch({type: operator, current: parsedCurr, previous: parsedPrev});
-            setOperator(operation);
-        }
-    }
+    const [history, setHistory] = useState(""); // used for setting the history
+    const [current, setCurrent] = useState("0"); // used for display current value
+    const [prevHistory, setPrevHistory] = useState(""); // used for checking previous history;
+    const [isEval, setIsEval] = useState(false); // used when user clicks equal sign and will get the value of everything
 
     function clearDisplay(){
+        // will go to final product
         setCurrent("0");
-        setPrevious("0");
-        dispatch({type: CLEAR});
+        setHistory("");
+        setIsEval(false);
+        setPrevHistory("");
+    }
+    function addNumber(btn) {
+        const value = btn.target.value;
+        if (current === "0" || isOperator.test(current)){
+            setCurrent(value);
+        } else {
+            setCurrent(prevCurrent => prevCurrent + value);
+        }
+    }
+
+    function addOperator(btn) {
+        const value = btn.target.value;
+    }
+    function addDecimal(btn) {
+        const value = btn.target.value;
+        if (!current.includes(value)){
+            // do if current doesn't have a decimal
+            if (endsWithOperator.test(history) || (current === 0 && history=== "")){
+                // if last item was an operator or current is zero and history is blank
+                setCurrent("0.");
+            } else{
+                // if last was a number then just add the decimal
+                setCurrent(prevCurrent => prevCurrent + value);
+            }
+            
+        }
     }
     return(
         <div className="calculator-grid">
             <Display 
-            display={current} 
-            previous={previous} 
+            current={current} 
+            previous={history} 
             />
 
             <Mainpad 
-            onClick={updateDisplay} 
-            updatePrev={updatePrevious} 
-            clearDisplay={clearDisplay} 
-            doOperation={handleOperation}
+            number={addNumber}
+            operator={addOperator}
+            decimal={addDecimal}
+            clearDisplay={clearDisplay}
             />
         </div>
     )
