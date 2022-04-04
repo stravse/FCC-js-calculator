@@ -1,0 +1,15 @@
+.main-number-container{
+    display: grid;
+    grid-template-columns: repeat(4, 5em);
+    grid-template-rows: repeat(5, 4em);
+    & button{
+        font-size: 1em;
+    }
+}
+
+.span-two-column{
+    grid-column: span 2;
+}
+.span-two-row{
+    grid-row: span 3;
+}

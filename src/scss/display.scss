@@ -1,0 +1,26 @@
+
+.display-container{
+    width: 100%;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+.display-previous{
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 1.5em;
+    height: 35%;
+
+}
+.display-current{
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 3em;
+    background-color: beige;
+    height: 65%;
+}
