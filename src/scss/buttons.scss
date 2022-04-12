@@ -1,16 +1,18 @@
 .main-number-container{
     display: grid;
-    
+    width: 100%;
     grid-template-columns: repeat(4, 4.5em);
     grid-template-rows: repeat(5, 4em);
-    gap: 0.1em;
+    gap: 0.125em;
+    justify-content: center;
     & button{
         font-size: 1em;
-        border-radius: 8px;
+        border-radius: 4px;
         border-style: none;
-        background-color: blue;
-        &.btn-operator{
-            background-color: red;
+        background-color: rgba(255, 255, 255, 0.562);
+        cursor: pointer;
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.76);
         }
     }
 
