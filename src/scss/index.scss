@@ -15,9 +15,9 @@ body{
     align-items: center;
 }
 .calculator-grid{
-    width: 320px;
-    height: 400px;
+    width: calc(4*4.5em);
+    height: calc(5 * 4em + 5em);
     display: grid;
     background-color: aquamarine;
-    grid-template-rows: repeat(2, 6rem);
+    grid-template-rows: repeat(2, 5rem);
 }
