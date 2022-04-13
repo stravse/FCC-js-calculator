@@ -1,15 +1,20 @@
 .main-number-container{
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(4, 4.5em);
-    grid-template-rows: repeat(5, 4em);
-    gap: 0.125em;
-    justify-content: center;
+    grid-template-areas: 
+    "clear clear divide multiply"
+    "seven eight nine subtract"
+    "four five six add"
+    "one two three equals"
+    "zero zero decimal equals";
+    grid-gap: 3px;
+    padding: 5px;
     & button{
         font-size: 1em;
         border-radius: 4px;
         border-style: none;
         background-color: rgba(255, 255, 255, 0.562);
+        padding: 1.5em 1.3em;
         cursor: pointer;
         &:hover{
             background-color: rgba(255, 255, 255, 0.76);
@@ -25,3 +30,20 @@
     grid-row: span 3;
 }
 
+#clear{grid-area: clear;}
+#divide{grid-area: divide;}
+#multiply{grid-area: multiply;}
+#substract{grid-area: substract;}
+#add{grid-area: add;}
+#zero{grid-area: zero;}
+#one{grid-area: one;}
+#two{grid-area: two;}
+#three{grid-area: three;}
+#four{grid-area: four;}
+#five{grid-area: five;}
+#six{grid-area: six;}
+#seven{grid-area: seven;}
+#eight{grid-area: eight;}
+#nine{grid-area: nine;}
+#decimal{grid-area: decimal;}
+#equals{grid-area: equals;}

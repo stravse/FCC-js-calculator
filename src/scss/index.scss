@@ -15,10 +15,10 @@ body{
     align-items: center;
 }
 .calculator-grid{
-    width: calc(4*4.5em + 0.5em);
-    height: calc(5 * 4em + 5em + 0.625em);
+    width: 18em;
+    height: 27.3em;
     display: grid;
-    background-color: aquamarine;
+    background: linear-gradient(#f45c43,#eb3349);
     grid-template-rows: repeat(2, 5rem);
     border-radius: 8px;
 }
