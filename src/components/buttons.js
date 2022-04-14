@@ -14,9 +14,9 @@ function Mainpad(props) {
     return (
         <div className="main-number-container">
             <button id="clear" onClick={props.clearDisplay} >AC</button>
-            <button id="delete" onClick={props.updatePrev}>DEL</button>
-            <button id="divide" onClick={props.operator} value="/">/</button>
-            <button id="multiply" onClick={props.operator} value="*">*</button>
+            
+            <button id="divide" onClick={props.operator} value="/" >/</button>
+            <button id="multiply" onClick={props.operator} value="*" >*</button>
 
             <button id="seven" onClick={props.number} value="7" >7</button>
             <button id="eight" onClick={props.number} value="8" >8</button>
@@ -28,14 +28,14 @@ function Mainpad(props) {
             <button id="five" onClick={props.number} value="5">5</button>
             <button id="six" onClick={props.number} value="6">6</button>
 
-            <button id="add" onClick={props.operator} value="+">+</button>
+            <button id="add" onClick={props.operator} value="+" >+</button>
 
             <button id="one" onClick={props.number} value="1">1</button>
             <button id="two" onClick={props.number} value="2">2</button>
             <button id="three" onClick={props.number} value="3">3</button>
 
-            <button id="equals" onClick={props.doEval} className="span-two-row" value="=">=</button>
-            <button id="zero" onClick={props.number} className="span-two-column" value="0">0</button>
+            <button id="equals" onClick={props.doEval} value="=" >=</button>
+            <button id="zero" onClick={props.number}  value="0">0</button>
             <button id="decimal" onClick={props.decimal} value=".">.</button>
         </div>
     )

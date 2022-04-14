@@ -91,17 +91,14 @@ function App(){
     }
 
     function doEval(){
-        let number = "";
-        if(endsWithOperator.test(history)){
-            number = eval(backup);
-            setHistory(backup + "=" + number);
-        } else{
-            number = eval(history);
-            setHistory(prevHistory => prevHistory + "=" + number);
+        let expression = history;
+        if(endsWithOperator.test(expression)){
+            expression = expression.split(0,-1); // remove last operation
         }
-
+        let answer = Math.round(10000 * eval(expression)) / 10000;
         setIsEval(true);
-        setCurrent(number);
+        setCurrent(answer);
+        setHistory(expression + "=" + answer);
         
     }
     return(

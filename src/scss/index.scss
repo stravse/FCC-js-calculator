@@ -1,11 +1,16 @@
 @import "./buttons.scss";
 @import "./display.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500&display=swap');
+
 *,*::before, *::after{
     box-sizing: border-box;
 }
 body{
     margin: 0;
     padding: 0;
+    background-color: #212121;
+    color: #212121;
 }
 #root{
     width: 100%;
@@ -15,9 +20,11 @@ body{
     align-items: center;
 }
 .calculator-grid{
-    width: 320px;
-    height: 400px;
+    width: 18em;
+    height: 26em;
     display: grid;
-    background-color: aquamarine;
-    grid-template-rows: repeat(2, 6rem);
+    background: linear-gradient(#eb6e95,#a25cb9);
+    grid-template-rows: repeat(2, 5rem);
+    border-radius: 8px;
+    
 }
