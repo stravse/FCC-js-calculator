@@ -1,4 +1,5 @@
 
+
 .display-container{
     width: 100%;
     display: flex;
@@ -7,22 +8,24 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     max-width: 18em;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    
+    padding: 5px;
 }
 
 .display-previous{
     display:flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: flex-end;
     font-size: 1.2em;
     height: 35%;
-    padding-right: 1px;
     
 }
 .display-current{
     display:flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: flex-end;
     font-size: 2.5em;
     height: 65%;
-    padding-right: 2px;
 }
